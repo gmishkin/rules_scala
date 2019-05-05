@@ -573,7 +573,7 @@ def _write_executable(ctx, rjars, main_class, jvm_flags, wrapper):
 
     # RUNPATH is defined here:
     # https://github.com/bazelbuild/bazel/blob/0.4.5/src/main/java/com/google/devtools/build/lib/bazel/rules/java/java_stub_template.txt#L227
-    classpath = ":".join(
+    classpath = ctx.configuration.host_path_separator.join(
         ["${RUNPATH}%s" % (j.short_path) for j in rjars.to_list()],
     )
     jvm_flags = " ".join(
