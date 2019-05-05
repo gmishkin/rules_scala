@@ -583,7 +583,7 @@ def _write_executable(ctx, rjars, main_class, jvm_flags, wrapper):
         template = template,
         output = ctx.outputs.executable,
         substitutions = {
-            "%classpath%": classpath,
+            "%classpath%": "\"%s\"" % classpath,
             "%java_start_class%": main_class,
             "%javabin%": "export REAL_EXTERNAL_JAVA_BIN=${JAVABIN};JAVABIN=%s/%s" % (
                 _runfiles_root(ctx),
